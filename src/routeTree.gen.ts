@@ -10,33 +10,80 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutUsRouteImport } from './routes/about-us'
+import { Route as MeetOurTeamRouteImport } from './routes/meet-our-team'
+import { Route as NewPatientsRouteImport } from './routes/new-patients'
+import { Route as WhyChooseUsRouteImport } from './routes/why-choose-us'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutUsRoute = AboutUsRouteImport.update({
+  id: '/about-us',
+  path: '/about-us',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MeetOurTeamRoute = MeetOurTeamRouteImport.update({
+  id: '/meet-our-team',
+  path: '/meet-our-team',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NewPatientsRoute = NewPatientsRouteImport.update({
+  id: '/new-patients',
+  path: '/new-patients',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WhyChooseUsRoute = WhyChooseUsRouteImport.update({
+  id: '/why-choose-us',
+  path: '/why-choose-us',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about-us': typeof AboutUsRoute
+  '/meet-our-team': typeof MeetOurTeamRoute
+  '/new-patients': typeof NewPatientsRoute
+  '/why-choose-us': typeof WhyChooseUsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about-us': typeof AboutUsRoute
+  '/meet-our-team': typeof MeetOurTeamRoute
+  '/new-patients': typeof NewPatientsRoute
+  '/why-choose-us': typeof WhyChooseUsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about-us': typeof AboutUsRoute
+  '/meet-our-team': typeof MeetOurTeamRoute
+  '/new-patients': typeof NewPatientsRoute
+  '/why-choose-us': typeof WhyChooseUsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    '/' | '/about-us' | '/meet-our-team' | '/new-patients' | '/why-choose-us'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/about-us' | '/meet-our-team' | '/new-patients' | '/why-choose-us'
+  id:
+    | '__root__'
+    | '/'
+    | '/about-us'
+    | '/meet-our-team'
+    | '/new-patients'
+    | '/why-choose-us'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutUsRoute: typeof AboutUsRoute
+  MeetOurTeamRoute: typeof MeetOurTeamRoute
+  NewPatientsRoute: typeof NewPatientsRoute
+  WhyChooseUsRoute: typeof WhyChooseUsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +95,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about-us': {
+      id: '/about-us'
+      path: '/about-us'
+      fullPath: '/about-us'
+      preLoaderRoute: typeof AboutUsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/meet-our-team': {
+      id: '/meet-our-team'
+      path: '/meet-our-team'
+      fullPath: '/meet-our-team'
+      preLoaderRoute: typeof MeetOurTeamRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/new-patients': {
+      id: '/new-patients'
+      path: '/new-patients'
+      fullPath: '/new-patients'
+      preLoaderRoute: typeof NewPatientsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/why-choose-us': {
+      id: '/why-choose-us'
+      path: '/why-choose-us'
+      fullPath: '/why-choose-us'
+      preLoaderRoute: typeof WhyChooseUsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutUsRoute: AboutUsRoute,
+  MeetOurTeamRoute: MeetOurTeamRoute,
+  NewPatientsRoute: NewPatientsRoute,
+  WhyChooseUsRoute: WhyChooseUsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
