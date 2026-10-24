@@ -4,7 +4,7 @@ import { serviceCategories, services } from "@/lib/clinic";
 import { Breadcrumbs, CtaSection, PageHero } from "@/components/sections";
 import dentistImg from "@/assets/dentist-working.jpg";
 
-export const Route = createFileRoute("/services")({
+export const Route = createFileRoute("/services/")({
   head: () => ({
     meta: [
       { title: "Dental Services — YourCompany Dental Studio" },

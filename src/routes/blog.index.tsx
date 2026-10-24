@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { blogPosts } from "@/lib/clinic";
 import { Breadcrumbs, CtaSection, PageHero } from "@/components/sections";
 
-export const Route = createFileRoute("/blog")({
+export const Route = createFileRoute("/blog/")({
   head: () => ({
     meta: [
       { title: "Dental Blog — YourCompany Dental Studio" },
