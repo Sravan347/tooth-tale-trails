@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Phone } from "lucide-react";
-import { clinic, serviceCategories, services } from "@/lib/clinic";
+import { serviceCategories, services } from "@/lib/clinic";
+
 import { Breadcrumbs, CtaSection, PageHero } from "@/components/sections";
 import dentistImg from "@/assets/dentist-working.jpg";
 
@@ -90,6 +90,3 @@ function ServicesPage() {
   );
 }
 
-function Marquee-less-spacer() {
-  return null;
-}
