@@ -15,6 +15,11 @@ const moreLinks = [
   { to: "/contact-us", label: "Contact" },
 ];
 
+const serviceLinks = serviceCategories.flatMap((category) => {
+  const service = category.services[0];
+  return service ? [{ to: `/services/${service.slug}`, label: category.title }] : [];
+});
+
 function Dropdown({ label, links }: { label: string; links: { to: string; label: string }[] }) {
   return (
     <div className="group relative">
@@ -53,7 +58,11 @@ export function Header() {
             <Sparkles className="size-3.5 text-gold" />
             Now welcoming new patients &amp; families — open evenings and weekends
           </p>
-          <Link to="/services/$slug" params={{ slug: "emergency-dentistry" }} className="font-semibold text-gold hover:underline">
+          <Link
+            to="/services/$slug"
+            params={{ slug: "emergency-dentistry" }}
+            className="font-semibold text-gold hover:underline"
+          >
             Dental emergency? Same-day care →
           </Link>
         </div>
@@ -69,29 +78,33 @@ export function Header() {
           </Link>
 
           <nav className="hidden items-center gap-6 lg:flex" aria-label="Primary">
-            <Link to="/" className="py-2 text-sm font-medium text-foreground transition-colors hover:text-primary" activeProps={{ className: "text-primary" }}>
+            <Link
+              to="/"
+              className="py-2 text-sm font-medium text-foreground transition-colors hover:text-primary"
+              activeProps={{ className: "text-primary" }}
+            >
               Home
             </Link>
             <Dropdown label="About" links={aboutLinks} />
             <Dropdown
               label="Services"
-              links={[
-                { to: "/services", label: "All Services" },
-                ...serviceCategories.map((c) => ({
-                  to: "/services",
-                  label: c.title,
-                })),
-              ]}
+              links={[{ to: "/services", label: "All Services" }, ...serviceLinks]}
             />
             <Dropdown label="More" links={moreLinks} />
           </nav>
 
           <div className="flex items-center gap-3">
-            <a href={clinic.phoneHref} className="hidden items-center gap-2 text-sm font-semibold text-primary md:flex">
+            <a
+              href={clinic.phoneHref}
+              className="hidden items-center gap-2 text-sm font-semibold text-primary md:flex"
+            >
               <Phone className="size-4" />
               {clinic.phone}
             </a>
-            <Link to="/contact-us" className="btn-primary hidden !px-5 !py-2.5 text-sm sm:inline-flex">
+            <Link
+              to="/contact-us"
+              className="btn-primary hidden !px-5 !py-2.5 text-sm sm:inline-flex"
+            >
               Book an Appointment →
             </Link>
             <button
@@ -112,17 +125,23 @@ export function Header() {
                 { to: "/", label: "Home" },
                 ...aboutLinks,
                 { to: "/services", label: "Services" },
+                ...serviceLinks,
                 ...moreLinks,
               ].map((l) => (
                 <Link
                   key={l.to + l.label}
                   to={l.to}
-                  className="rounded-lg px-3 py-2.5 text-sm font-medium text-foreground hover:bg-muted"
+                  className={`rounded-lg px-3 py-2.5 text-sm font-medium hover:bg-muted ${
+                    serviceLinks.includes(l) ? "pl-6 text-muted-foreground" : "text-foreground"
+                  }`}
                 >
                   {l.label}
                 </Link>
               ))}
-              <a href={clinic.phoneHref} className="mt-2 flex items-center gap-2 px-3 py-2 text-sm font-semibold text-primary">
+              <a
+                href={clinic.phoneHref}
+                className="mt-2 flex items-center gap-2 px-3 py-2 text-sm font-semibold text-primary"
+              >
                 <Phone className="size-4" /> {clinic.phone}
               </a>
               <Link to="/contact-us" className="btn-primary mt-2">
