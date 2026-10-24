@@ -46,9 +46,8 @@ function ServicesPage() {
         </div>
       </section>
 
-      <Marquee-less-spacer />
-
       {/* Categories overview */}
+
       <section className="bg-ivory">
         <div className="container-site grid gap-10 py-16 md:py-24 lg:grid-cols-2">
           <div>
